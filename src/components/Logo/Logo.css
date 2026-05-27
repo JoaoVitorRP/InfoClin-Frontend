@@ -1,0 +1,14 @@
+.logo {
+  font-weight: bold;
+  text-align: center;
+}
+
+.logo-medio {
+  font-size: 48px;
+}
+
+.logo-grande {
+  margin-bottom: 50px;
+
+  font-size: 64px;
+}
