@@ -14,6 +14,7 @@ export default function CpfInput({ onChange, value }) {
       <input
         id="cpf"
         className="input light-gray-bg"
+        name="cpf"
         ref={maskRef}
         onChange={onChange}
         value={value}

@@ -8,10 +8,11 @@ export default function SenhaInput({ id, label, placeholder, onChange, value, ha
       <input
         id={id}
         className={`input light-gray-bg ${hasError ? "input-error" : ""}`}
-        placeholder={placeholder}
+        name={id}
         type="password"
         onChange={onChange}
         value={value}
+        placeholder={placeholder}
         required={true}
       ></input>
     </InputContainer>
