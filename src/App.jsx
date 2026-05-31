@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import PrivateRoute from "./pages/PrivateRoute";
 import Inicio from "./pages/Inicio";
+import CadastrarFicha from "./pages/CadastrarFicha";
 
 function App() {
   return (
@@ -17,14 +18,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route
-            path="/inicio"
-            element={
-              <PrivateRoute>
-                <Inicio />
-              </PrivateRoute>
-            }
-          />
+          <Route element={<PrivateRoute />}>
+            <Route path="/inicio" element={<Inicio />} />
+            <Route path="/cadastrar-ficha" element={<CadastrarFicha />} />
+          </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>

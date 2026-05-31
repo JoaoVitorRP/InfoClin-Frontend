@@ -10,7 +10,7 @@ export default function CpfInput({ onChange, value }) {
   });
 
   return (
-    <InputContainer id="cpf" label="CPF">
+    <InputContainer id="cpf" label="CPF" required={true}>
       <input
         id="cpf"
         className="input light-gray-bg"

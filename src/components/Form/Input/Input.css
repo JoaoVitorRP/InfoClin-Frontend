@@ -1,5 +1,7 @@
 .input {
   height: 35px;
+  width: 100%;
+  max-width: 300px;
   padding: 0px 15px;
   margin-top: 5px;
 
@@ -14,12 +16,12 @@
 }
 
 .input-label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .input-container {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .input-error {
@@ -35,4 +37,27 @@
 
   font-size: 14px;
   color: #ff4d4d;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.radio-box {
+  display: flex;
+  align-items: center;
+
+  height: 25px;
+  margin-right: 15px;
+}
+
+.radio-input {
+  margin: 0;
+  margin-right: 5px;
+}
+
+.radio-label {
+  font-size: 16px;
 }
