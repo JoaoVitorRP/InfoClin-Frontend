@@ -11,6 +11,78 @@ import TelephoneInput from "../components/Form/Input/TelephoneInput";
 import SelectInput from "../components/Form/Input/SelectInput";
 import TextArea from "../components/Form/TextArea/TextArea";
 import Button from "../components/Form/Button/Button";
+import { telephoneFormatter } from "../utils/formatters";
+
+const SEXO_OPTIONS = [
+  {
+    id: "sexoMasc",
+    value: "M",
+    label: "Masculino",
+  },
+  {
+    id: "sexoFem",
+    value: "F",
+    label: "Feminino",
+  },
+  {
+    id: "sexoNaoInfo",
+    value: "NI",
+    label: "Prefiro não informar",
+  },
+  {
+    id: "sexoOutro",
+    value: "X",
+    label: "Outro",
+  },
+];
+
+const TIPO_SANGUINEO_OPTIONS = [
+  {
+    id: "selecione",
+    value: "",
+    label: "Selecione...",
+  },
+  {
+    id: "aRh",
+    value: "A+",
+    label: "A positivo (A+)",
+  },
+  {
+    id: "a",
+    value: "A-",
+    label: "A negativo (A-)",
+  },
+  {
+    id: "bRh",
+    value: "B+",
+    label: "B positivo (B+)",
+  },
+  {
+    id: "b",
+    value: "B-",
+    label: "B negativo (B-)",
+  },
+  {
+    id: "abRh",
+    value: "AB+",
+    label: "AB positivo (AB+)",
+  },
+  {
+    id: "ab",
+    value: "AB-",
+    label: "AB negativo (AB-)",
+  },
+  {
+    id: "oRh",
+    value: "O+",
+    label: "O positivo (O+)",
+  },
+  {
+    id: "o",
+    value: "O-",
+    label: "O negativo (O-)",
+  },
+];
 
 export default function ClinicalDataForm({ title, buttonText, clinicalData }) {
   const {
@@ -42,77 +114,6 @@ export default function ClinicalDataForm({ title, buttonText, clinicalData }) {
 
   const navigate = useNavigate();
 
-  const sexoOptions = [
-    {
-      id: "sexoMasc",
-      value: "M",
-      label: "Masculino",
-    },
-    {
-      id: "sexoFem",
-      value: "F",
-      label: "Feminino",
-    },
-    {
-      id: "sexoNaoInfo",
-      value: "NI",
-      label: "Prefiro não informar",
-    },
-    {
-      id: "sexoOutro",
-      value: "X",
-      label: "Outro",
-    },
-  ];
-
-  const tipoSanguineoOptions = [
-    {
-      id: "selecione",
-      value: "",
-      label: "Selecione...",
-    },
-    {
-      id: "aRh",
-      value: "A+",
-      label: "A positivo (A+)",
-    },
-    {
-      id: "a",
-      value: "A-",
-      label: "A negativo (A-)",
-    },
-    {
-      id: "bRh",
-      value: "B+",
-      label: "B positivo (B+)",
-    },
-    {
-      id: "b",
-      value: "B-",
-      label: "B negativo (B-)",
-    },
-    {
-      id: "abRh",
-      value: "AB+",
-      label: "AB positivo (AB+)",
-    },
-    {
-      id: "ab",
-      value: "AB-",
-      label: "AB negativo (AB-)",
-    },
-    {
-      id: "oRh",
-      value: "O+",
-      label: "O positivo (O+)",
-    },
-    {
-      id: "o",
-      value: "O-",
-      label: "O negativo (O-)",
-    },
-  ];
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -125,10 +126,11 @@ export default function ClinicalDataForm({ title, buttonText, clinicalData }) {
     setIsLoading(true);
 
     try {
-      const response = await postClinicalData(formData);
+      const newFormData = { ...formData, telefoneContato: telephoneFormatter(formData.telefoneContato) };
+      const response = await postClinicalData(newFormData);
       const data = response.data;
 
-      toast.success("Dados clínicos cadastrados com sucesso!", {
+      toast.success("Dados clínicos registrados com sucesso!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -162,12 +164,12 @@ export default function ClinicalDataForm({ title, buttonText, clinicalData }) {
     formData.nome.length > 0 &&
     formData.sobrenome.length > 0 &&
     formData.sexo.length > 0 &&
-    sexoOptions.some((option) => option.value !== "" && option.value === formData.sexo) &&
+    SEXO_OPTIONS.some((option) => option.value !== "" && option.value === formData.sexo) &&
     formData.nomeContato.length > 0 &&
     formData.telefoneContato.length > 0 &&
     !formData.telefoneContato.includes("_") &&
     formData.tipoSanguineo.length > 0 &&
-    tipoSanguineoOptions.some((option) => option.value !== "" && option.value === formData.tipoSanguineo) &&
+    TIPO_SANGUINEO_OPTIONS.some((option) => option.value !== "" && option.value === formData.tipoSanguineo) &&
     formData.alergias.length <= 1000 &&
     formData.medicamentos.length <= 1000 &&
     formData.doencas.length <= 1000 &&
@@ -187,7 +189,7 @@ export default function ClinicalDataForm({ title, buttonText, clinicalData }) {
           value={formData.sobrenome}
           required={true}
         />
-        <RadioInput id="sexo" label="Sexo" onChange={handleChange} value={formData.sexo} radioOptions={sexoOptions} required={true} />
+        <RadioInput id="sexo" label="Sexo" onChange={handleChange} value={formData.sexo} radioOptions={SEXO_OPTIONS} required={true} />
 
         <hr className="content-hr" />
 
@@ -216,7 +218,7 @@ export default function ClinicalDataForm({ title, buttonText, clinicalData }) {
           label="Tipo sanguíneo"
           onChange={handleChange}
           value={formData.tipoSanguineo}
-          options={tipoSanguineoOptions}
+          options={TIPO_SANGUINEO_OPTIONS}
           required={true}
         />
         <TextArea

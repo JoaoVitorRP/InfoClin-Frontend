@@ -9,6 +9,7 @@ import Cadastro from "./pages/Cadastro";
 import PrivateRoute from "./pages/PrivateRoute";
 import Inicio from "./pages/Inicio";
 import CadastrarFicha from "./pages/CadastrarFicha";
+import EditarFicha from "./pages/EditarFicha";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/inicio" element={<Inicio />} />
             <Route path="/cadastrar-ficha" element={<CadastrarFicha />} />
+            <Route path="/editar-ficha" element={<EditarFicha />} />
           </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>

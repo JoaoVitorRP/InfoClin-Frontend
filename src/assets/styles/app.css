@@ -123,3 +123,10 @@ h2 {
 .content {
   align-items: center;
 }
+
+.vertical-line {
+  width: 2px;
+
+  border: none;
+  margin: 0px 15px;
+}

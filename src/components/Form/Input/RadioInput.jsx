@@ -1,6 +1,6 @@
 import InputContainer from "./InputContainer";
 
-export default function RadioInput({ id, label, placeholder, onChange, radioOptions, hasError, errorMsg, required }) {
+export default function RadioInput({ id, label, placeholder, onChange, value, radioOptions, hasError, errorMsg, required }) {
   return (
     <InputContainer label={label} hasError={hasError} errorMsg={errorMsg} required={required}>
       <div className="radio-container">
@@ -14,6 +14,7 @@ export default function RadioInput({ id, label, placeholder, onChange, radioOpti
                 type="radio"
                 onChange={onChange}
                 value={radioOption.value}
+                checked={value === radioOption.value}
                 required={true}
               />
               <label className="radio-label" htmlFor={radioOption.id}>

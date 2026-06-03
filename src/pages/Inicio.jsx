@@ -7,6 +7,7 @@ import { getClinicalDataByUserId } from "../services/clinicalDataService";
 
 import Main from "../layouts/Main";
 import Button from "../components/Form/Button/Button";
+import PatientViewCard from "../components/ClinicalDataCard/PatientViewCard";
 
 export default function Inicio() {
   const location = useLocation();
@@ -53,7 +54,7 @@ export default function Inicio() {
   }, []);
 
   return (
-    <Main title="Suas fichas" isLoading={isLoading}>
+    <Main title="Seus dados clínicos" isLoading={isLoading}>
       {!clinicalData && !isLoading && (
         <>
           <p style={{ marginBottom: "15px" }}>
@@ -62,6 +63,7 @@ export default function Inicio() {
           <Button text="Cadastrar dados" onClick={() => navigate("/cadastrar-ficha", { state: { clinicalData } })} />
         </>
       )}
+      {clinicalData && !isLoading && <PatientViewCard clinicalData={clinicalData} />}
     </Main>
   );
 }
