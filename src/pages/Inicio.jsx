@@ -16,6 +16,7 @@ export default function Inicio() {
 
   const [clinicalData, setClinicalData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasDeleted, setHasDeleted] = useState(false);
 
   const { userData } = useAuth();
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function Inicio() {
     } else {
       fetchData();
     }
-  }, []);
+  }, [hasDeleted]);
 
   return (
     <Main title="Seus dados clínicos" isLoading={isLoading}>
@@ -63,7 +64,7 @@ export default function Inicio() {
           <Button text="Cadastrar dados" onClick={() => navigate("/cadastrar-ficha", { state: { clinicalData } })} />
         </>
       )}
-      {clinicalData && !isLoading && <PatientViewCard clinicalData={clinicalData} />}
+      {clinicalData && !isLoading && <PatientViewCard clinicalData={clinicalData} hasDeleted={hasDeleted} setHasDeleted={setHasDeleted} />}
     </Main>
   );
 }

@@ -8,4 +8,8 @@ async function postClinicalData(clinicalData) {
   return await apiClient.post("/dados-clinicos", clinicalData);
 }
 
-export { getClinicalDataByUserId, postClinicalData };
+async function deleteClinicalData(dataId) {
+  return await apiClient.delete(`/dados-clinicos/${dataId}`);
+}
+
+export { getClinicalDataByUserId, postClinicalData, deleteClinicalData };

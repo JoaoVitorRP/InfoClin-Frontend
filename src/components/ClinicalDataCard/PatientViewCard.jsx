@@ -1,8 +1,10 @@
 import { MdOutlineDeleteForever, MdOutlineQrCodeScanner } from "react-icons/md";
 import { BiSolidEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import { cpfFormatter, telephoneFormatter } from "../../utils/formatters";
+import { deleteClinicalData } from "../../services/clinicalDataService";
 
 import "./ClinicalDataCard.css";
 
@@ -24,8 +26,44 @@ const MAP_TIPO_SANGUINEO = {
   "O-": "O negativo (O-)",
 };
 
-export default function PatientViewCard({ clinicalData }) {
-  const { cpf, nome, sobrenome, sexo, nomeContato, telefoneContato, tipoSanguineo, alergias, medicamentos, doencas, cirurgias } = clinicalData;
+export default function PatientViewCard({ clinicalData, hasDeleted, setHasDeleted }) {
+  const { id, cpf, nome, sobrenome, sexo, nomeContato, telefoneContato, tipoSanguineo, alergias, medicamentos, doencas, cirurgias } =
+    clinicalData;
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Você tem certeza que quer excluir seus dados clínicos?",
+      text: "Essa ação não poderá ser desfeita.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#C90000",
+      cancelButtonColor: "#AAAAAA",
+      confirmButtonText: "Sim, excluir item",
+      cancelButtonText: "Cancelar",
+      reverseButtons: true,
+      showLoaderOnConfirm: true,
+      preConfirm: async () => {
+        try {
+          await deleteClinicalData(id);
+          return true;
+        } catch (err) {
+          Swal.showValidationMessage(`Erro: (${err.status}) ${err.response?.data || err.message}`);
+          return false;
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        Swal.fire({
+          title: "Excluído!",
+          text: "Seus dados clínicos foram excluídos com sucesso.",
+          icon: "success",
+        });
+
+        setHasDeleted(!hasDeleted);
+      }
+    });
+  };
 
   return (
     <div className="patient-card white-bg">
@@ -87,7 +125,10 @@ export default function PatientViewCard({ clinicalData }) {
         <Link to="/editar-ficha" state={{ clinicalData }}>
           <BiSolidEdit className="green-txt" style={{ fontSize: "30px" }} />
         </Link>
-        <MdOutlineDeleteForever className="red-txt" style={{ fontSize: "35px" }} />
+        <button className="invisible-btn" style={{ cursor: "pointer" }} onClick={handleDelete}>
+          <MdOutlineDeleteForever className="red-txt" style={{ fontSize: "35px" }} />
+        </button>
+
         <MdOutlineQrCodeScanner className="blue-txt" style={{ fontSize: "35px" }} />
       </div>
     </div>

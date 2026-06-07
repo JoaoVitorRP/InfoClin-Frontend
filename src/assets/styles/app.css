@@ -30,6 +30,15 @@
   height: 100vh;
 }
 
+.invisible-btn {
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+}
+
 /* Colors */
 .black-txt {
   color: black;
@@ -60,7 +69,7 @@
 }
 
 .red-txt {
-  color: rgb(219, 0, 0);
+  color: #c90000;
 }
 
 .white-bg {
