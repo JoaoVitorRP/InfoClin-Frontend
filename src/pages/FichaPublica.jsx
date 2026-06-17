@@ -27,7 +27,7 @@ export default function FichaPublica() {
 
       setClinicalData(response?.data);
     } catch (err) {
-      toast.error(err.status == 401 ? "Código ou senha inválidos." : `Erro ao buscar dados da ficha: (${err.status}) ${err.response.data}`, {
+      toast.error(err.status == 401 ? "Senha inválida." : `Erro ao buscar dados da ficha: (${err.status}) ${err.response.data}`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
