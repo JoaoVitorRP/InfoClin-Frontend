@@ -7,6 +7,21 @@
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
+.public-card {
+  display: flex;
+
+  width: 600px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .public-card {
+    width: 350px;
+  }
+}
+
 .patient-view-title {
   margin-bottom: 0px;
 }

@@ -12,4 +12,8 @@ async function deleteClinicalData(dataId) {
   return await apiClient.delete(`/dados-clinicos/${dataId}`);
 }
 
-export { getClinicalDataByUserId, postClinicalData, deleteClinicalData };
+async function publicLogin(publicData) {
+  return await apiClient.post("/dados-clinicos/login-ficha-publica", publicData);
+}
+
+export { getClinicalDataByUserId, postClinicalData, deleteClinicalData, publicLogin };

@@ -39,8 +39,6 @@ export default function Login() {
 
       navigate("/inicio");
     } catch (err) {
-      console.log(err);
-
       toast.error(err.status == 401 ? "Usuário ou senha inválidos." : `Erro ao realizar login: (${err.status}) ${err.response.data}`, {
         position: "top-right",
         autoClose: 5000,

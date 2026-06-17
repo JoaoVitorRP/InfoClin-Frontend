@@ -10,6 +10,8 @@ import PrivateRoute from "./pages/PrivateRoute";
 import Inicio from "./pages/Inicio";
 import CadastrarFicha from "./pages/CadastrarFicha";
 import EditarFicha from "./pages/EditarFicha";
+import QrCode from "./pages/QrCode";
+import FichaPublica from "./pages/FichaPublica";
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
             <Route path="/inicio" element={<Inicio />} />
             <Route path="/cadastrar-ficha" element={<CadastrarFicha />} />
             <Route path="/editar-ficha" element={<EditarFicha />} />
+            <Route path="/qrcode" element={<QrCode />} />
           </Route>
+          <Route path="/ficha-publica/:codigo" element={<FichaPublica />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>

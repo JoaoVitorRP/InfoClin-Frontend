@@ -128,8 +128,9 @@ export default function PatientViewCard({ clinicalData, hasDeleted, setHasDelete
         <button className="invisible-btn" style={{ cursor: "pointer" }} onClick={handleDelete}>
           <MdOutlineDeleteForever className="red-txt" style={{ fontSize: "35px" }} />
         </button>
-
-        <MdOutlineQrCodeScanner className="blue-txt" style={{ fontSize: "35px" }} />
+        <Link to="/qrcode" state={{ clinicalData }}>
+          <MdOutlineQrCodeScanner className="blue-txt" style={{ fontSize: "35px" }} />
+        </Link>
       </div>
     </div>
   );
