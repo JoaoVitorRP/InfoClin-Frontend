@@ -36,6 +36,9 @@ jobs:
       # Passo 4: Roda o build do Vite
       - name: Build do projeto
         run: npm run build
+        env:
+          VITE_API_URL: ${{secrets.VITE_API_URL}}
+          VITE_FRONT_URL: ${{secrets.VITE_FRONT_URL}}
 
       # Passo 5: Inicializa as configurações internas do GitHub para prepará-lo para o Pages
       - name: Configurar Pages
