@@ -2,13 +2,16 @@
 
 Este é o repositório do front-end da plataforma **InfoClin**, uma aplicação web desenvolvida em React para permitir o gerenciamento de fichas clínicas e a visualização rápida de dados de emergência através de QR Codes.
 
+Link do deploy no GitHub Pages: https://joaovitorrp.github.io/InfoClin-Frontend/
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **React 19** (com Vite)
 - **React Router Dom** para gerenciamento de rotas
 - **Axios** para consumo da API do Back-end
 - **Docker** (imagem baseada no Node 24-alpine para ambiente local)
-- **GitHub Actions** para o deploy
+- **GitHub Actions** para o pipeline de deploy
+- **GitHub Pages** para a hospedagem do site
 
 ## 🔑 Variáveis de Ambiente Necessárias
 
