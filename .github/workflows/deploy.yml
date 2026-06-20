@@ -39,7 +39,6 @@ jobs:
         env:
           VITE_API_URL: ${{secrets.VITE_API_URL}}
           VITE_FRONT_URL: ${{secrets.VITE_FRONT_URL}}
-          VITE_BASE_URL: ${{secrets.VITE_BASE_URL}}
 
       # Passo 5: Inicializa as configurações internas do GitHub para prepará-lo para o Pages
       - name: Configurar Pages

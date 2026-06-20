@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import "./assets/styles/reset.css";
@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <BrowserRouter basename={import.meta.env.VITE_BASE_URL}>
+      <HashRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
@@ -30,7 +30,7 @@ function App() {
           <Route path="/ficha-publica/:codigo" element={<FichaPublica />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
