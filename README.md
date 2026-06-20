@@ -57,3 +57,9 @@ docker build -t infoclin-frontend-img .
 # 2. Executar o container injetando as variáveis de ambiente
 docker run -p 5173:5173 --env-file .env --name infoclin-frontend infoclin-frontend-img
 ```
+
+## ⚠️ Observações Importantes
+
+Em caso de acesso do ambiente de produção, há duas observações importantes a serem feitas:
+* **Cold Start do Backend (Render):** Como o backend está hospedado no plano gratuito do Render, o servidor entra em modo de espera após 15 minutos de inatividade. Por conta disso, o primeiro acesso ao site pode apresentar uma lentidão de cerca de 50 segundos enquanto o container inicializa. Basta aguardar esse momento inicial para o sistema funcionar normalmente.
+* **Pausa do Banco de Dados (Supabase):** O plano gratuito do Supabase pausa automaticamente o banco de dados após um período de inatividade (geralmente 7 dias). Caso encontre erros ao tentar fazer login ou buscar dados mesmo após o backend iniciar, pode ser necessário que o administrador reative o projeto diretamente no painel do Supabase.
