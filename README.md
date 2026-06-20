@@ -19,7 +19,10 @@ O projeto utiliza variáveis de ambiente para gerenciar as URLs de comunicação
   - Para produção: A URL gerada no seu provedor de hospedagem (ex: `https://sua-api-no-render.onrender.com`).
 - `VITE_FRONT_URL`: URL completa do próprio frontend.
   - Para desenvolvimento local: Geralmente `http://localhost:5173`.
-  - Para produção: A URL gerada no seu provedor de hospedagem (ex: `https://seu-usuario.github.io/nome-do-repositorio`).
+  - Para produção: A URL gerada no seu provedor de hospedagem (ex: `https://seu-usuario.github.io`).
+- `VITE_BASE_URL`: Base da URL que virá antes de todas as rotas
+  - Para desenvolvimento local: Geralmente apenas `/`
+  - Para produção: Caso seja hospedado no GitHub Pages, será o nome do repositório seguido de barra (ex: `/InfoClin-Frontend/`)
 
 ## ⚙️ Como Rodar o Projeto Localmente
 

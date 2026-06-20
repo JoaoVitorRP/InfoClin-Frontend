@@ -20,9 +20,9 @@ export default function QrCode() {
       <Link to="/inicio" style={{ textDecoration: "none" }}>
         <Logo isHeader={false} />
       </Link>
-      <QRCode value={`${import.meta.env.VITE_FRONT_URL}/ficha-publica/${clinicalData.codigo}`} />
+      <QRCode value={`${import.meta.env.VITE_FRONT_URL}${import.meta.env.VITE_BASE_URL}ficha-publica/${clinicalData.codigo}`} />
       <p style={{ marginTop: "15px" }}>
-        <b>{`${import.meta.env.VITE_FRONT_URL}/ficha-publica/${clinicalData.codigo}`}</b>
+        <b>{`${import.meta.env.VITE_FRONT_URL}${import.meta.env.VITE_BASE_URL}ficha-publica/${clinicalData.codigo}`}</b>
       </p>
       <p style={{ marginTop: "30px" }}>
         <b>Senha pública: {userData.senhaPublica}</b>
