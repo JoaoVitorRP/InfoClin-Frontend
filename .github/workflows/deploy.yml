@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+# Permissões de segurança necessárias para o robô ler o código e publicar no Pages
+permissions:
+  contents: read # Permissão para ler o código do repositório
+  pages: write # Permissão para gravar/atualizar o conteúdo do GitHub Pages
+  id-token: write # Permissão necessária para garantir uma autenticação segura no deploy
+
+jobs:
+  deploy:
+    # Vincula a execução ao ambiente oficial do GitHub Pages para gerar a URL correta no final
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # Passo 1: Baixa (clona) o código do repositório para dentro da máquina do GitHub
+      - name: Checkout código
+        uses: actions/checkout@v7
+
+      # Passo 2: Instala o Node.js na versão v24
+      - name: Configurar Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      # Passo 3: Instala as dependências
+      - name: Instalar dependências
+        run: npm install
+
+      # Passo 4: Roda o build do Vite
+      - name: Build do projeto
+        run: npm run build
+
+      # Passo 5: Inicializa as configurações internas do GitHub para prepará-lo para o Pages
+      - name: Configurar Pages
+        uses: actions/configure-pages@v6
+
+      # Passo 6: Pega a pasta 'dist' gerada pelo Vite e compacta como um artefato de deploy
+      - name: Upload dos arquivos compilados
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: "./dist"
+
+      # Passo 7: Pega o artefato gerado no passo anterior e publica oficialmente no link do site
+      - name: Deploy para o GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

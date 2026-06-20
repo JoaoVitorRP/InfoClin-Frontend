@@ -8,6 +8,7 @@ Este é o repositório do front-end da plataforma **InfoClin**, uma aplicação 
 - **React Router Dom** para gerenciamento de rotas
 - **Axios** para consumo da API do Back-end
 - **Docker** (imagem baseada no Node 24-alpine para ambiente local)
+- **GitHub Actions** para o deploy
 
 ## 🔑 Variáveis de Ambiente Necessárias
 
